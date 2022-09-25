@@ -12,10 +12,22 @@
   
   <script>
     export default {
-      props: ['content'],
+      props: {
+        content: {
+          type: Array,
+          default() {
+            return []
+          }
+        },
+        infoToPaginate: {
+          type: Array,
+          default() {
+            return []
+          }
+        }
+      },
       data: () => {
         return {
-          content: this.content,
           perPage: 4,
           pageNumber: 1,
         }
@@ -31,7 +43,8 @@
     paginatedContent() {
       let from = (this.pageNumber - 1) * this.perPage;
       let to = from + this.perPage;
-      return this.content.slice(from, to);
+      this.$emit('onChange', this.content.slice(from, to));
+      return ''
     },
   },
   methods: {
@@ -39,5 +52,13 @@
       this.pageNumber = page;
     },
   },
+  watch: {
+    paginatedContent() {
+      console.log(this.paginatedContent);
+      this.$emit('onChange', this.paginatedContent)
+    }
+  }
 }
   </script>
+
+<style src="./Paginator.css"></style>
