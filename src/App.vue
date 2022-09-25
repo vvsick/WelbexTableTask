@@ -5,7 +5,6 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 import TableModule from './components/TableModule.vue'
 
 export default {
@@ -19,11 +18,12 @@ export default {
 <style>
 #app {
   font-family: "Lucida Sans Unicode";
-  color: #2c3e50;
+  color: #e6e2da;
+  font-weight: 600;
   font-size: 16px;
   width: 100%;
   height: 100vh;
-  background: #e6e3ac;
+  background: #8392b4;
 }
 
 body {

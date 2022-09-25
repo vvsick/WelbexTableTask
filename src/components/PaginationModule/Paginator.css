@@ -28,11 +28,11 @@ li div {
 }
 
 .pagination div.active {
-    background-color: #847293;
-    color: white;
+    background-color: #112144;
+    color: #8392b4;
 }
 
 .pagination div:hover:not(.active) {
-    background-color: #9482a5;
+    background-color: #b7cdff;
     transition: background-color .3s;
 }

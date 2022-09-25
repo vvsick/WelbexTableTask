@@ -12,6 +12,7 @@ table {
     text-align: center;
     width: 100%;
     position: relative;
+    color: #e6e2da;
 }
 
 th, td {
@@ -21,7 +22,9 @@ th, td {
 
 th {
     height: 27.5px;
-    background: #9480a5;
+    background: #112144;
+    color: #ddd;
 }
 
-tr:nth-child(even) {background-color: #f2f2f2;}
+tr:nth-child(even) {background-color: #354568;}
+tr:nth-child(odd) {background-color: #2e457b;}
