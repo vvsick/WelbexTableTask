@@ -15,3 +15,18 @@ export default {
   }
 }
 </script>
+
+<style>
+#app {
+  font-family: "Lucida Sans Unicode";
+  color: #2c3e50;
+  font-size: 16px;
+  width: 100%;
+  height: 100vh;
+  background: #e6e3ac;
+}
+
+body {
+  margin: 0;
+}
+</style>

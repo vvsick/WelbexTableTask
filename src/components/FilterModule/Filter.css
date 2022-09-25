@@ -1,0 +1,28 @@
+.filter-wrap {
+    background: #847293;
+    color: #e6e3ac;
+}
+
+.filter {
+    display: flex;
+    justify-content: space-between;
+    text-align: justify;
+    align-items: center;
+    padding: 15px 10px;
+    border-bottom: 3px solid #3b3b4f;
+}
+
+label {
+    display: inline-block;
+    margin: 0.5rem 0;
+}
+
+select,
+input {
+    display: block;
+    min-height: 2em;
+    width: 290px;
+}
+input {
+    height: 30px;
+}

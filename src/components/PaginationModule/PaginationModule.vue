@@ -1,13 +1,16 @@
 <template>
-  <div class="pagination is-centered">
-    <div class="pagination-list">
-      <div class="pagination-link" 
-      v-for="page in pages"
+  <nav>
+    <ul class="pagination">
+      <li 
+      v-for="page in totalPages"
       :key="page"
       @click="changePage(page)">
-      {{page}}</div>
-    </div>
-  </div>
+        <div :class="{ active: pageNumber == page ? true : false }">
+          {{page}}
+        </div>
+      </li>
+    </ul>
+  </nav>
   </template>
   
   <script>
@@ -28,12 +31,12 @@
       },
       data: () => {
         return {
-          perPage: 4,
+          perPage: 8,
           pageNumber: 1,
         }
       },
       computed: {
-    pages() {
+    totalPages() {
       let count = 0;
       for (let key = 1; key <= this.content.length; key++) {
         count++;
@@ -50,11 +53,11 @@
   methods: {
     changePage(page) {
       this.pageNumber = page;
+
     },
   },
   watch: {
     paginatedContent() {
-      console.log(this.paginatedContent);
       this.$emit('onChange', this.paginatedContent)
     }
   }

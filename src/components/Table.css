@@ -1,0 +1,27 @@
+.main-wrapper {
+    height: 100%;
+}
+
+.table-wrap {
+    padding: 1.5rem 1rem;
+    margin-bottom: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+    position: relative;
+}
+
+th, td {
+    height: 59px;
+    border-bottom: 1px solid #000;
+}
+
+th {
+    height: 27.5px;
+    background: #9480a5;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
