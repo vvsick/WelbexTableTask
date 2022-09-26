@@ -42,12 +42,12 @@
 
 ## Клонирование репозитория
 ```
-git clone 
+git clone https://github.com/vvsick/WelbexTableTask
 ```
 
 ### Настройка проекта
 ```
-npm install https://github.com/vvsick/WelbexTableTask
+npm install
 ```
 
 ### Компиляция для разработки
