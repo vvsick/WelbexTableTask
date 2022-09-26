@@ -42,7 +42,7 @@
 
 ## Клонирование репозитория
 ```
-git clone https://github.com/vvsick/WelbexTableTask
+git clone https://github.com/vvsick/WelbexTableTask.git
 ```
 
 ### Настройка проекта
