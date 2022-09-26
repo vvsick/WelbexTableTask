@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="has-background-link-light">
     <TableModule />
   </div>
 </template>
@@ -16,6 +16,7 @@ export default {
 </script>
 
 <style>
+  @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 #app {
   font-family: "Lucida Sans Unicode";
   color: #e6e2da;
@@ -23,7 +24,6 @@ export default {
   font-size: 16px;
   width: 100%;
   height: 100vh;
-  background: #8392b4;
 }
 
 body {

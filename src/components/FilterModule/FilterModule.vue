@@ -1,68 +1,97 @@
 <template>
-    <div class="filter-wrap">    
-        <form @submit.prevent="updateData()">
-            <div class="filter">
-                <label for="colFilter">Поле фильтрации
-                    <select 
-                    name="colFilter" id="colFilter" 
-                    v-model="selectedColumn" 
-                    required>
-                        <option disabled value="">Выберите значение</option>
-                        <option value="title" selected>Название</option>
-                        <option value="amount">Количество</option>
-                        <option value="distance">Расстояние</option>
-                    </select>
-                </label>
-
-                <label for="conditionFilter">Условие фильтрации
-                    <select 
-                    name="conditionFilter" 
-                    id="conditionFilter" 
-                    v-model="selectedCondition"
-                    required>
-                        <option disabled value="">Выберите значение</option>
-                        <option value="equals">Равно</option>
-                        <option value="contains">Содержит</option>
-                        <option 
-                        value="larger" 
-                        v-if="this.selectedColumn=='amount' | this.selectedColumn=='distance'">Больше</option>
-                        <option 
-                        value="less" 
-                        v-if="this.selectedColumn=='amount' | this.selectedColumn=='distance'">Меньше</option>
-                    </select>
-                </label>
+    <div class="container mb-5 pt-3">    
+        <form @submit.prevent="filter">
+            <div class="field has-addons">
+                <div class="control">
+                    <div class="select">
+                        <select
+                            name="colFilter"
+                            @input="changeColumn"
+                            v-model="column"
+                            required>
+                            <option disabled :value="null">Поле фильтрации</option>
+                            <template v-for="column in columns">
+                                <option
+                                    v-if="column.filter"
+                                    :key="column.field" 
+                                    :value="column">
+                                {{ column.label }}
+                                </option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
                 
-                <input 
-                type="text" 
-                name="filter" 
-                placeholder="Введите значение (только цифры и буквы)" 
-                v-model="inputValue"
-                pattern="^[0-9a-zA-Z]+$">
+                <div class="control">
+                    <div class="select">
+                        <select
+                            name="conditionFilter" 
+                            v-model="condition"
+                            required>
+                            <option disabled :value="null">Условие Фильтрации</option>
+                            <option value="equals">Равно</option>
+                            <option value="contains">Содержит</option>
+                            <option value="larger" v-if="activeColumnIsNumber">Больше</option>
+                            <option value="less" v-if="activeColumnIsNumber">Меньше</option>
+                        </select>
+                    </div>
+                </div>
+            
+                <div class="control is-expanded">
+                    <input
+                        class="input"
+                        :type="activeColumnIsNumber ? 'number' : 'text'" 
+                        name="filter"
+                        placeholder="Введите значение (только цифры и буквы)" 
+                        v-model="value"
+                        pattern="^[0-9a-zA-Z]+$">
+                </div>
             </div>
-                <input type="submit" value="Фильтр" />
+
+            <div class="level-item is-flex is-align-items-center">
+                <input type="submit" value="Фильтр"  class="button mr-3"/>
+                <button @click="clean" class="button">Сброс</button>
+            </div>
         </form>
     </div>
 </template>
 
 <script>
 export default {
-    data: () => {
-        return {
-            inputValue: '',
-            selectedCondition: '',
-            selectedColumn: '',
-        }
+    props: {
+        columns: {
+            type: Array,
+            default: () => ([]),
+        },
+    },
+    data: () => ({
+        column: null,
+        condition: null,
+        value: null,
+    }),
+    computed: {
+        activeColumnIsNumber() {
+            return this.column && this.column.type === 'number';
+        },
     },
     methods: {
-        updateData() {
-            this.$emit("updateData", {
-                inpValue: this.inputValue,
-                condition: this.selectedCondition,
-                column: this.selectedColumn
-            })
-        }
+        filter() {
+            this.$emit("filter", {
+                value: this.value,
+                condition: this.condition,
+                column: this.column,
+            });
+        },
+        clean() {
+            this.column = null;
+            this.condition = null;
+            this.value = null;
+            this.filter();
+        },
+        changeColumn() {
+            this.condition = null;
+            this.value = null;
+        },
     }
 }
 </script>
-
-<style src="./Filter.css"></style>
