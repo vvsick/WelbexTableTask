@@ -47,7 +47,7 @@ git clone
 
 ### Настройка проекта
 ```
-npm install
+npm install https://github.com/vvsick/WelbexTableTask
 ```
 
 ### Компиляция для разработки
